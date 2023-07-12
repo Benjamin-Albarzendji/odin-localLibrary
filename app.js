@@ -36,7 +36,7 @@ connectToDB().catch((err) => console.log(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 // Setting up the middleware
 app.use(logger('dev'));
