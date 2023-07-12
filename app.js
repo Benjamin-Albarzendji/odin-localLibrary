@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 // Importing the routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const catalogRouter = require('./routes/catalog');
 
 // Initializing the express app
 const app = express();
@@ -24,18 +25,18 @@ async function connectToDB() {
 
 connectToDB().catch((err) => console.log(err));
 
-const Genre = require('./models/genre');
+// const Genre = require('./models/genre');
 
-async function genreCreate(index, name) {
-  const genre = new Genre({ name });
-  await genre.save();
-}
+// async function genreCreate(index, name) {
+//   const genre = new Genre({ name });
+//   await genre.save();
+// }
 
-genreCreate(6, 'test');
+// genreCreate(6, 'test');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
 
 // Setting up the middleware
 app.use(logger('dev'));
@@ -47,6 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Declaring the routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
