@@ -6,6 +6,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 
 // Importing the routes
+const compression = require('compression');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');
@@ -43,6 +44,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression()); // Compress all routes
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Declaring the routes
